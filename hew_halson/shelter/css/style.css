@@ -1,0 +1,391 @@
+@charset "UTF-8";
+
+*, html, body {
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+#main-canvas {
+  position: relative;
+  width: 100%;
+  height: 248px;
+  margin: 0 auto;
+}
+
+#getCamPosiArea {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  width: auto;
+  height: 30px;
+  text-align: center;
+}
+
+.logo-area {
+  position: absolute;
+  left: 50%;
+  top: 198px;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.logo-area__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gnav {
+  width: 100%;
+  height: 45px;
+  margin: 0 auto 10px;
+  /* background: #ccc; */
+}
+
+.modal-area {
+  display: flex;
+  /* justify-content: center; */
+  width: auto;
+  height: 325px;
+  padding: 0 20px;
+  background: #ccc;
+  overflow-x: scroll;
+}
+
+.modal {
+  max-width: 475px;
+  min-width: 475px;
+  height: 100%;
+  border: 1px solid black;
+  color: white;
+  text-align: center;
+  background: #253d56;
+}
+
+
+/************************* 共通プロパティ **************************/
+.error-area {
+  display: block;
+  width: auto;
+  height: 24px;
+  margin: 10px auto 0;
+  line-height: 24px;
+  font-size: 14px;
+  text-align: center;
+  color: #f00;
+}
+
+.modal-title {
+  display: inline-block;
+  width: auto;
+  height: 30px;
+  margin: 20px auto 0;
+  line-height: 30px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.modal-title__span {
+  font-size:21px;
+  color:#2C92C5;
+}
+
+.modal-hide-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  line-height: 30px;
+  font-size: 24px;
+  text-align: center;
+  color: #253d56;
+  background: #fff;
+
+  cursor: pointer;
+}
+
+.modal-hide-btn:hover {
+  color: #fff;
+  background: #E81123;
+}
+
+/************************* ログインエリア **************************/
+.login-area__form {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  /* background: #fff; */
+  caret-color: #2C92C5;
+}
+
+.login-area__item {
+  position: relative;
+  width: 80%;
+  height: 50px;
+  margin: 15px auto 0;
+  text-align: start;
+}
+
+.login-area__input {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border: 1px solid #fff;
+  padding-left: 5px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 13px;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+/* 入力があればスタイル変更 */
+.login-area__input:focus, .login-area__input:not(:placeholder-shown) {
+  padding: 10px 0 0 5px;
+  outline: none;
+  border: 2px solid #2C92C5;
+}
+
+.login-area__label {
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  height: 24px;
+  line-height: 24px;
+  font-size: 13px;
+  /* color: rgb(118, 118, 118); */
+  color: #aaa;
+}
+
+/* 子要素に当たっている時に有効 */
+.login-area__item:focus-within .login-area__label, .login-area__input:not(:placeholder-shown) + .login-area__label {
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  height: 13px;
+  line-height: 13px;
+  font-size: 11px;
+  color: #2C92C5;
+}
+
+.login-area__forget-pass {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin: 10px auto 0;
+  /* line-height: 30px; */
+  font-size: 13px;
+  text-align: center;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.login-area__forget-pass:hover {
+  color: #fff;
+}
+
+.login-area__submit-btn {
+  display: block;
+  width: 40%;
+  height: 35px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  margin: 10px auto;
+  color: #253d56;
+  background: #fff;
+}
+
+.login-area__submit-btn:hover {
+  color: #fff;
+  background: #2C92C5;
+}
+
+/******************************** 新規ユーザ登録エリア ******************************/
+.signup-area {
+  display: none;
+  /* display: block; */
+}
+
+.backto-loginmodal-btn {
+  position: absolute;
+  left: 5px;
+  bottom: 9px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 24px;
+  text-align: center;
+  color: #253d56;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.backto-loginmodal-btn:hover {
+  color: #fff;
+  background: #2C92C5;
+}
+
+/********************** 新規ユーザ登録(入力内容確認)エリア **********************/
+.signup-confirm-area {
+  display: none;
+}
+
+/******************************* ユーザ情報エリア ************************************/
+/* .userinfo-area {
+
+} */
+
+/******************************* 店舗検索エリア ************************************/
+/* .search-store-area {
+  display: block;
+} */
+
+/****************************** お問い合わせエリア **********************************/
+.contact-area {
+  /* display: none; */
+  /* display: block; */
+  /* width: 500px; */
+}
+
+/* .contact-area__form {
+  overflow-y: scroll;
+} */
+
+.contact-title {
+  display: block;
+  width: 80%;
+  height: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted #fff;
+  /* border-radius: 5px; */
+  margin: 20px auto 0;
+  line-height: 30px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.contact-area__message {
+  width: 80%;
+  height: auto;
+  padding: 7.5px;
+  border-bottom: 1px dotted #fff;
+  /* border-radius: 5px; */
+  margin: 0 auto;
+  line-height: 34px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+}
+
+.contact-area__select {
+  display: inline-block;
+  width: auto;
+  height: 25px;
+  text-align: center;
+}
+
+.contact-area__label {
+  width: auto;
+  height: 25px;
+  line-height: 25px;
+}
+
+.contact-area__input {
+  width: auto;
+  height: auto;
+}
+
+.contact-area__textarea {
+  width: 85%;
+}
+
+/********************** お問い合わせエリア(入力内容確認) *************************/
+.contact-confirm-area {
+  display: none;
+  /* display: block; */
+  /* overflow-y: auto; */
+}
+
+/* .contact-confirm-error-area {
+  margin-top: 30px;
+} */
+
+.modify-btn {
+  margin-bottom: 30px;
+}
+
+/************************************ 退会エリア ***********************************/
+.delete-area {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 50%;
+  background: #808080;
+  opacity: .95;
+}
+
+.delete-area__form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: auto;
+  background: #fff;
+}
+
+.delete-area__item {
+  width: 80%;
+  height: 70px;
+  margin: 20px auto 0;
+}
+
+.delete-area__input {
+  width: 100%;
+  height: 50px;
+  /* border-bottom: 1px solie #000; */
+  background: transparent;
+  cursor: pointer;
+}
+
+.delete-area__input::placeholder {
+  color: #000;
+}
+
+.delete-area__input:focus {
+  background: #808080;
+}
+
+.delete-area__submit-btn {
+  display: block;
+  width: 40%;
+  height: 35px;
+  margin: 20px auto;
+  color: #000;
+  background: #fff;
+}
+
+.delete-area__submit-btn:hover {
+  color: #fff;
+  background: #f00;
+}
+

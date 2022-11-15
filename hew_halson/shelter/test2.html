@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      var timers = [{
+            handler: function timeout1 () { console.log('Start'); },
+            timeout: 100
+          },
+          {
+            handler: function timeout2 () { console.log('Hello, World!'); },
+            timeout: 20000
+          },
+          {
+            handler: function timeout3 () { console.log('End') },
+            timeout: 30000
+          }],
+          i = 0,
+          l = timers.length;
+    
+      setTimeout(function timeout () {
+        console.log(i);
+        timers[i++].handler();
+        console.log(i);
+
+        console.log(i < 1);
+        if (i < l) {
+          console.log(i < 1);
+          setTimeout(timeout, timers[i].timeout);
+        }
+        console.log(i);
+      }, timers[i].timeout);
+
+
+
+
+
+    
+  </script>
+</body>
+</html>

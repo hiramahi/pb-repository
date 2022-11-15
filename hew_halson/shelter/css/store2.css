@@ -1,0 +1,870 @@
+@charset "UTF-8";
+
+*, html, body {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  display: block;
+}
+
+/************************* ヘッダー **************************/
+.header {
+  position: relative;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100px;
+  min-width: 100px;
+  height: 100%;
+  border: none;
+  box-shadow: 0 0 5px;
+  background: #2C92C5;
+}
+
+.header__logo {
+  width: 93%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.header__copyright {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: 93%;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  text-align: center;
+  color: white;
+  opacity: 0;
+}
+
+/************* ハンバーガーメニュー ***************/
+.header__hamburger {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.header__hamburger span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.header__hamburger span:nth-of-type(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.header__hamburger span:nth-of-type(3) {
+  top: calc(100% - 2.5px)
+}
+
+/************* グローバルナビゲーション ***************/
+.header__gnav {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  color: white;
+  opacity: 0;
+}
+
+.header__gnav p {
+  width: 100%;
+  height: 20px;
+  margin-bottom: 15px;
+  line-height: 20px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.header__gnav p:last-child {
+  margin-bottom: 0;
+}
+
+/******************************* カート********************************/
+.cart-area {
+  display: flex;
+  position: relative;
+  /* left: 100px; */
+  /* width: calc(100% - 100px); */
+  width: 100%;
+  height: 100px;
+}
+
+.cart-area__list {
+  display: flex;
+  width: 100%;
+  height: 235px;
+  padding: 3px 5px;
+  overflow-x: auto;
+}
+
+.cart-area__list::-webkit-scrollbar {
+  height: 7px;
+}
+.cart-area__list::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #2C92C5), to(#2C92C5));
+  background: linear-gradient(to bottom, #2C92C5 50%, #2C92C5);
+  border-radius: 5px;
+}
+.cart-area__list::-webkit-scrollbar-track {
+  background: #dcdcdc;
+}
+
+.cart-area__item {
+  position: relative;
+  width: 120px;
+  min-width: 120px;
+  height: 100%;
+  margin-right: 3px;
+}
+
+.cart-area__img-wrapper {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 94px;
+  margin-bottom: 3px;
+}
+
+.cart-area__select {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 53px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+.cart-area__product-name {
+  display: inline-block;
+  width: 120px;
+  height: auto;
+  margin-bottom: 3px;
+  line-height: 130%;
+  font-size: 14px;
+  text-align: center;
+}
+
+.cart-area__price-delete {
+  display: inline-block;
+  width: 100%;
+  height: 15px;
+  text-align: center;
+}
+
+.cart-area__product-price {
+  display: inline-block;
+  width: auto;
+  height: 15px;
+  padding-right: 10px;
+  border-right: 1px solid black;
+  line-height: 15px;
+  font-size: 13px;
+}
+
+.cart-area__delete-btn {
+  display: inline-block;
+  width: auto;
+  height: 15px;
+  padding-left: 10px;
+  line-height: 15px;
+  font-size: 13px;
+  text-align: center;
+  color: #0000EE;
+  cursor: pointer;
+}
+
+.cart-area__delete-btn:hover {
+  text-decoration: underline;
+}
+
+/************* その他 ***************/
+.cart-area__item-empty {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% - 130px);
+  height: 20px;
+  line-height: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.cart-area__not-list {
+  width: 120px;
+  min-width: 120px;
+  height: 250px;
+  padding: 5px 5px;
+  box-shadow: 0 0 5px;
+}
+
+.cart-area__sum {
+  width: 100%;
+  height: 43px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  line-height: 43px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.cart-area__reset-btn {
+  width: 100%;
+  height: 37px;
+  margin-bottom: 5px;
+  line-height: 37px;
+  font-size: 13px;
+  text-align: center;
+  color: white;
+  background: #2C92C5;
+  cursor: pointer;
+}
+
+.cart-area__buy-btn {
+  width: 100%;
+  height: 103px;
+  margin-bottom: 5px;
+  line-height: 120%;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  background: #2C92C5;
+  cursor: pointer;
+}
+
+/******************************* canvas ********************************/
+#displayArea {
+  position: relative;
+  /* left: 100px; */
+  /* width: calc(100% - 100px); */
+  width: 100%;
+  height: calc(100% - 130px);
+}
+
+#viewProductNameArea {
+  display: none;
+  position: absolute;
+  width: auto;
+  height: 20px;
+  padding: 0 4px;
+  line-height: 20px;
+  font-size: 12px;
+  text-align: center;
+  box-shadow: 0 0 5px;
+  background: white;
+}
+
+#viewMessageArea {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 37px;
+  transform: translateX(-50%);
+  /* width: auto; */
+  height: 30px;
+  padding: 0 10px;
+  background: black;
+  opacity: 0;
+}
+
+#viewMessage {
+  display: inline-block;
+  width: auto;
+  height: 30px;
+  line-height: 30px;
+  font-size: 15px;
+  color: white;
+}
+
+/******************************* 商品詳細モーダル ********************************/
+.product-modal {
+  position: absolute;
+  top: 0;
+  right: -310px;
+  width: 310px;
+  height: 100%;
+  min-height: 100%;
+  box-shadow: 0 0 5px;
+  font-size: 14px;
+  text-align: center;
+  background: white;
+  overflow-y: auto;
+}
+
+.product-modal::-webkit-scrollbar {
+  width: 7px;
+}
+.product-modal::-webkit-scrollbar-thumb {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #2C92C5), to(#2C92C5));
+  background: linear-gradient(to bottom, #2C92C5 50%, #2C92C5);
+  border-radius: 5px;
+}
+.product-modal::-webkit-scrollbar-track {
+  background: #dcdcdc;
+}
+
+/************* モーダルナビゲーション ***************/
+.product-modal__nav-area {
+  display: flex;
+  width: 100%;
+  height: 30px;
+}
+
+.product-modal__switch-btn {
+  width: 140px;
+  height: 30px;
+  border-bottom: 1px solid #9AA0A6;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.product-modal__hide-btn {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.product-modal__hide-btn:hover {
+  color: #fff;
+  background: #E81123;
+}
+
+/************* モーダルコンテンツ ***************/
+.product-modal__content {
+  position: relative;
+  width: 250px;
+  height: auto;
+  margin: 15px auto 30px;
+}
+
+.product-modal__img-div {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.product-modal__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.product-modal__title {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.product-modal__price-quantity {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.product-modal__price-quantity-p {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  white-space: pre;
+}
+
+.product-modal__desc {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+  line-height: 150%;
+}
+
+.product-modal__btn-area {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+}
+
+.product-modal__label {
+  display: inline-block;
+  width: auto;
+  height: 30px;
+  line-height: 30px;
+  padding-right: 20px;
+}
+
+.product-modal__select {
+  display: inline-block;
+  width: 40px;
+  height: 30px;
+  border-radius: 3px;
+}
+
+.add-to-cart-btn {
+  display: inline-block;
+  width: auto;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 5px;
+  line-height: 30px;
+  color: white;
+  background: #2C92C5;
+  cursor: pointer;
+}
+
+/******************************* 掲示板モーダル ********************************/
+.product-modal__forum-formimg-div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/************* 投稿エリア ***************/
+.product-modal__forum-form-div {
+  width: 100%;
+  height: auto;
+  padding: 25px 5px 15px;
+  border-bottom: 1px solid #9AA0A6;
+  font-size: 13px;
+}
+
+.product-modal__forum-form-title {
+  width: 100%;
+  height: 20px;
+  margin-bottom: 5px;
+  line-height: 20px;
+  font-size: 15px;
+}
+
+.product-modal__forum-label-div {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.product-modal__forum-input {
+  font-family: "メイリオ", sans-serif;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: 1px solid #000;
+  padding-left: 5px;
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+/* 入力があればスタイル変更 */
+.product-modal__forum-input:focus, .product-modal__forum-input:not(:placeholder-shown) {
+  padding: 10px 0 0 5px;
+  outline: none;
+  border: 2px solid #2C92C5;
+}
+
+.product-modal__forum-label {
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  height: 24px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+/* 子要素に当たっている時に有効 */
+.product-modal__forum-label-div:focus-within .product-modal__forum-label, .product-modal__forum-input:not(:placeholder-shown) + .product-modal__forum-label {
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  height: 13px;
+  line-height: 13px;
+  font-size: 11px;
+  color: #2C92C5;
+}
+
+.product-modal__forum-textarea {
+  font-family: "メイリオ", sans-serif;
+  resize: none;
+  height: 80px;
+  font-size: 13px;
+}
+
+/* 入力があればスタイル変更 */
+.product-modal__forum-textarea:focus, .product-modal__forum-textarea:not(:placeholder-shown) {
+  padding: 16px 0 0 5px;
+}
+
+.product-modal__forum-postbtn {
+  display: inline-block;
+  width: auto;
+  height: 30px;
+  outline: none;
+  border: none;
+  line-height: 30px;
+  color: white;
+  background: #2C92C5;
+  cursor: pointer;
+}
+
+/************* 閲覧エリア ***************/
+.product-modal__forum-maintitle {
+  width: 100%;
+  height: 20px;
+  margin: 14px auto 10px;
+  line-height: 20px;
+  font-size: 18px;
+}
+
+.product-modal__forum-ul {
+  width: 100%;
+  height: auto;
+}
+
+.product-modal__forum-li {
+  display: flex;
+  width: auto;
+  height: auto;
+  border-bottom: 1px dotted #9AA0A6;
+  padding: 6px 0;
+}
+
+.product-modal__forum-li:last-child {
+  border-bottom: none;
+}
+
+.product-modal__forum-item1 {
+  width: 50px;
+  height: auto;
+}
+
+.product-modal__forum-userimg-div {
+  width: 50px;
+  height: 50px;
+}
+
+.product-modal__forum-item2 {
+  position: relative;
+  width: 200px;
+  height: auto;
+}
+
+.product-modal__forum-nickname {
+  width: 100%;
+  height: 20px;
+  margin-bottom: 3px;
+  line-height: 20px;
+  text-align: left;
+}
+
+.product-modal__forum-view-title {
+  width: 100%;
+  height: auto;
+  margin-bottom: 3px;
+  line-height: 150%;
+}
+
+.product-modal__forum-view-content {
+  width: 100%;
+  height: auto;
+  line-height: 150%;
+  margin-bottom: 3px;
+  font-size: 13px;
+}
+
+.product-modal__forum-goodwrap-wrap {
+  display: inline-block;
+  width: auto;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.product-modal__forum-goodwrap {
+  display: flex;
+  justify-content: space-around;
+  width: auto;
+  height: 100%;
+}
+
+.product-modal__forum-goodimg-div {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.product-modal__forum-goodcnt {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.product-modal__forum-date {
+  display: inline-block;
+  width: auto;
+  height: 20px;
+  line-height: 20px;
+  font-size: 13px;
+}
+
+.product-modal__forum-empty {
+  width: 100%;
+  line-height: 150%;
+}
+
+/******************************* カメラ操作ボタン ********************************/
+.cambtn-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* position: relative; */
+  /* left: 100px; */
+  /* width: calc(100% - 100px); */
+  width: 100%;
+  height: 30px;
+  color: white;
+  background-color: #292A2D;
+  /* background: #5A8A89; */
+  /* background: #8693B3; */
+  /* background: #2C92C5; */
+  background: black;
+}
+
+.cambtn-area__btn {
+  width: auto;
+  height: 30px;
+}
+
+.cambtn-area__span {
+  display: block;
+  min-width: 70px;
+  height: 30px;
+  padding: 0 5px;
+  line-height: 30px;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/******************************* 購入詳細モーダル ********************************/
+.buy-detail-modal-wrap {
+  display: none;
+  /* display: inline-block; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  /* width: 80%; */
+  width: auto;
+  height: 80%;
+  box-shadow: 0 0 5px;
+  background: white;
+  overflow-y: auto;
+}
+
+.buy-detail-modal {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+.buy-detail-modal__left-area, .buy-detail-modal__right-area {
+  width: 50%;
+  height: 100%;
+}
+
+.buy-detail-modal__left-area {
+  border-right: 1px solid black;
+}
+
+.buy-detail-modal__left-area__title, .buy-detail-modal__right-area__title {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.buy-detail-modal__cart-list, .buy-detail-modal__selected-list-form {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100% - 40px);
+}
+
+.buy-detail-modal__cart-list {
+  padding-right: 10px;
+  overflow-y: auto;
+}
+
+/************* レフトエリア ***************/
+.buy-detail-modal__left-area__item {
+  display: flex;
+  width: 100%;
+  height: 120px;
+  border-bottom: 1px solid black;
+}
+
+.buy-detail-modal__left-area__item-left {
+  width: 120px;
+  height: 100%;
+}
+
+.buy-detail-modal__left-area__item-right {
+  width: calc(100% - 120px);
+  height: 100%;
+}
+
+.buy-detail-modal__left-area__img-wrapper {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: 100px;
+}
+
+.buy-detail-modal__left-area__product-name {
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+  font-size: 16px;
+}
+
+.buy-detail-modal__left-area__select-price-delete {
+  display: flex;
+  width: 100%;
+  height: calc(100% - 25px);
+}
+
+.buy-detail-modal__left-area__select {
+  width: 53px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+.buy-detail-modal__left-area__product-price {
+  display: inline-block;
+  width: auto;
+  height: 25px;
+  line-height: 25px;
+  font-size: 16px;
+}
+
+.buy-detail-modal__left-area__delete-btn {
+  display: inline-block;
+  width: auto;
+  height: 25px;
+  line-height: 25px;
+  font-size: 16px;
+}
+
+/************* ライトエリア ***************/
+.buy-detail-modal__selected-list-form {
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.buy-detail-modal__selected-list {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.buy-detail-modal__selected-list__item {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.selected-list__selected-list__item-title {
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+.selected-list__selected-list__item-content {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+}
+
+.selected-list__selected-list__radio-label {
+  display: inline-block;
+  width: auto;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.selected-list__selected-list__radio {
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  width: auto;
+  height: 20px;
+  margin-top: 0;
+}
+
+.selected-list__selected-list__input-label {
+  display: block;
+  width: 200px;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.selected-list__selected-list__input {
+  width: 100%;
+  height: 100%;
+}
+
+

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+    html, body {
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+    .wrapper-map {
+        width: 60%;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .wrapper-map__map-area {
+        width: auto;
+        height: 50%;
+        padding: 15px;
+    }
+
+    .wrapper-map__info-area {
+        width: 100%;
+        height: auto;
+        background: #253d56;
+    }
+
+    .info-area__info-ul {
+        width: 95%;
+        height: auto;
+        padding: 15px 0 15px;
+        margin: 0 auto;
+        color: white;
+    }
+
+    .info-area__info-li {
+        width: auto;
+        height: auto;
+        padding: 15px;
+        border: 1px solid #253d56;
+        margin: 0 auto;
+        list-style-type: none;
+        cursor: pointer;
+    }
+
+    .info-area__info-title {
+        font-size: 17px;
+    }
+
+    .info-area__info-postcode, .info-area__info-address {
+        font-size: 15px;
+    }
+    </style>
+</head>
+<body>
+    <div class="wrapper-map">
+        <div id="mapDiv" class="wrapper-map__map-area"></div>
+        <div id="mapInfoDiv" class="wrapper-map__info-area">
+            <ul id="infoList" class="info-area__info-ul"></ul>
+        </div>
+    </div>
+
+    <script>
+        function initMap() {
+            // 初期表示
+            const mapOptions = {
+                center: new google.maps.LatLng(35.69184707956485, 139.69694752704785),
+                zoom: 17,
+                maxZoom: 17,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            const map = new google.maps.Map(document.getElementById('mapDiv'), mapOptions);
+
+            // マーカー選択時、情報表示
+            // const mapInfo = document.getElementById('mapInfoDiv');
+            // function displayMapInfo() {
+            // }
+
+            // マーカー情報
+            const markerData = {
+                tokyo: {
+                    title: 'HALSON新宿店',
+                    postcode: '〒160-0023',
+                    address: '東京都新宿区西新宿1-7-3',
+                    position: new google.maps.LatLng(35.69184707956485, 139.69694752704785)
+                },
+                nagoya: {
+                    title: 'HALSON名古屋店',
+                    postcode: '〒450-0002',
+                    address: '名古屋市中村区名駅4-27-1',
+                    position: new google.maps.LatLng(35.168332770915995, 136.88561516888137)
+                },
+                osaka: {
+                    title: 'HALSON大阪店',
+                    postcode: '〒530-0001',
+                    address: '大阪市北区梅田3-3-1',
+                    position: new google.maps.LatLng(34.700060214125, 135.49304272653998)
+                }
+            };
+            
+            // マーカー(店舗)の数分のli作成
+            const keysOfMarkerData = Object.keys(markerData);
+            const keysOfTokyo = Object.keys(markerData.tokyo)
+            const ClassListP = ['info-area__info-title', 'info-area__info-postcode', 'info-area__info-address'];
+
+            for(let i = 0; i < keysOfMarkerData.length; i++){
+                // li追加
+                const li = document.createElement('li');
+                const placeName = keysOfMarkerData[i];
+                li.id = placeName;
+                li.classList.add('info-area__info-li');
+                li.addEventListener('dblclick', () => { // li生成の度にイベント発行
+                    if(confirm(`${markerData[placeName].title}の店舗ページに飛びますか？`)){
+                        window.location.href = `http://localhost/hew_211214_toppage/store.php?stores_id=${i+1}`;
+                    }
+                });
+
+                document.getElementById('infoList').appendChild(li);
+
+                // p追加
+                for(let i = 0; i < ClassListP.length; i++){
+                    const p = document.createElement('p');
+                    p.classList.add(ClassListP[i]);
+
+                    const key = keysOfTokyo[i];
+                    p.innerText = markerData[placeName][key];
+
+                    li.appendChild(p);
+                }
+            }
+
+            // マーカーオブジェクト作成
+            const markers = [];
+            markers.push(
+                new google.maps.Marker({
+                    position: markerData.tokyo.position,
+                    map: map,
+                    title: markerData.tokyo.title
+                }),
+                new google.maps.Marker({
+                    position: markerData.nagoya.position,
+                    map: map,
+                    title: markerData.nagoya.title
+                }),
+                new google.maps.Marker({
+                    position: markerData.osaka.position,
+                    map: map,
+                    title: markerData.osaka.title
+                })
+            );
+
+            // 店舗配列作成
+            const titleList = []
+            titleList.push(
+                document.getElementById('tokyo'),
+                document.getElementById('nagoya'),
+                document.getElementById('osaka')
+            );
+
+            // クリックされたマーカーに対応するli要素のスタイル変更+マーカーに移動
+            for(const marker of markers){
+                marker.addListener('click', function() {
+                    initBorder(titleList);
+
+                    if(marker.title == titleList[0].firstElementChild.innerText){
+                        updateBorder(titleList[0]);
+                    }else if(marker.title == titleList[1].firstElementChild.innerText){
+                        updateBorder(titleList[1]);
+                    }else if(marker.title == titleList[2].firstElementChild.innerText){
+                        updateBorder(titleList[2]);
+                    }
+
+                    map.panTo(marker.position);
+                });
+            }
+            
+            // クリックされた要素に対応するマーカーに移動+スタイル変更
+            for(let i = 0; i < titleList.length; i++){
+                titleList[i].addEventListener('click', function() {
+                    initBorder(titleList);
+
+                    updateBorder(titleList[i]);
+
+                    // 座標更新
+                    map.panTo(markers[i].position);
+                });
+            }
+
+            // スタイル初期化
+            function initBorder(lists){
+                for(const list of lists) list.style.border = '1px solid #253d56';
+            }
+
+            // スタイル更新
+            function updateBorder(list) { list.style.border = '1px solid white'; }
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDP3pivUWg0ENk3j2SAD9_7g5_2dkDWd7s&callback=initMap&v=weekly" async></script>
+</body>
+</html>
